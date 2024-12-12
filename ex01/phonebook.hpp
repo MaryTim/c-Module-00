@@ -13,7 +13,6 @@ class PhoneBook {
 		void add();
 		void search();
 		void exit();
-		Contact createContact();
 	private:
 		Contact contacts[8];
 		int contactCount;
