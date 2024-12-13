@@ -1,6 +1,7 @@
 #include "phonebook.hpp"
 #include <cctype> 
 #include <iomanip>
+#include <cstdlib>
 
 PhoneBook::PhoneBook(): contactCount(0) {}
 
@@ -72,7 +73,7 @@ void PhoneBook::add() {
 
 void printContacts(Contact contacts[]) {
 	std::cout << "|     Index|First Name| Last Name|  Nickname|" << std::endl;
-	   for (int i = 0; i < 9; i++) {
+	   for (int i = 0; i < 8; i++) {
         std::cout << "|";
         std::cout << std::setw(10) << i << "|";
         std::cout << std::setw(10) << truncateStr(contacts[i].getFirstName()) << "|";
@@ -105,7 +106,7 @@ void printContacts(Contact contacts[]) {
 void printDetails(Contact contact) {
 	if (contact.getFirstName().empty())
 	{
-		std::cout << "Invalid index!" << std::endl;
+		std::cout << "Info is not available with this index, try a different one from 0 to 7!" << std::endl;
 		return ;
 	}
 	std::cout << "First name: " << contact.getFirstName() << std::endl;
@@ -116,15 +117,16 @@ void printDetails(Contact contact) {
 }
 
 void PhoneBook::search() {
-	std::string index;
+	std::string input;
 
 	printContacts(contacts);
 	std::cout << "Pick index of a contact you want to see: ";
-	getline(std::cin, index);
-	if (isNumeric(index))
-		printDetails(contacts[std::stoi(index)]);
+	getline(std::cin, input);
+	int number = std::atoi(input.c_str());
+	if (number >= 0 && number <= 7)
+		printDetails(contacts[number]);
 	else
-		std::cout << "Please enter a number!" << std::endl;
+		std::cout << "Invalid index!" << std::endl;
 }
 
 void PhoneBook::exit() {

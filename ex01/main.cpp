@@ -4,7 +4,7 @@ int main() {
     PhoneBook phonebook;
 	std::string command;
 
-	std::cout << "---> PhoneBook <---" << std::endl;
+	std::cout << "PhoneBook" << std::endl;
 	while (1) {
 		std::cout << "Enter a command: ADD, SEARCH, EXIT: ";
 		std::getline(std::cin, command);
